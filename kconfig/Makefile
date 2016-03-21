@@ -7,7 +7,7 @@ all: conf mconf nconf
 
 # Build flags
 CFLAGS = -DCONFIG_=\"CT_\" -DPACKAGE="\"crosstool-NG $(VERSION)\""
-LDFLAGS = $(INTL_LIBS)
+LDFLAGS = -L/opt/local/lib $(INTL_LIBS)
 
 # Compiler flags to use gettext
 ifeq ($(gettext),)
