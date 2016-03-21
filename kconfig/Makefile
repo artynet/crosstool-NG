@@ -7,7 +7,13 @@ all: conf mconf nconf
 
 # Build flags
 CFLAGS = -DCONFIG_=\"CT_\" -DPACKAGE="\"crosstool-NG $(VERSION)\""
-LDFLAGS = -L/opt/local/lib $(INTL_LIBS)
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -L/opt/local/lib $(INTL_LIBS)
+else
+    LDFLAGS = $(INTL_LIBS)
+endif
+
 
 # Compiler flags to use gettext
 ifeq ($(gettext),)
